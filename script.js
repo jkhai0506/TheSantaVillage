@@ -1,0 +1,5 @@
+document.addEventListener('DOMContentLoaded',function(){
+  var snow=document.getElementById('snow');
+  if(snow&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){var glyphs=['❄','❅','•'];for(var i=0;i<34;i++){var f=document.createElement('i');f.textContent=glyphs[i%3];f.style.left=(Math.random()*100)+'%';f.style.fontSize=(10+Math.random()*16)+'px';f.style.animationDuration=(9+Math.random()*9)+'s';f.style.animationDelay=(-Math.random()*18)+'s';f.style.setProperty('--dx',(Math.random()*60-30)+'px');f.style.opacity=.45+Math.random()*.5;snow.appendChild(f)}}
+  var plan=document.querySelector('.plan');if(plan){plan.addEventListener('click',function(){var overlay=document.createElement('div');overlay.className='lb';overlay.innerHTML='<button class="lbx" aria-label="Close">×</button><div class="lbi">'+plan.innerHTML+'</div>';document.body.appendChild(overlay);function close(){overlay.remove();document.removeEventListener('keydown',key)}function key(e){if(e.key==='Escape')close()}overlay.addEventListener('click',function(e){if(e.target===overlay||e.target.classList.contains('lbx'))close()});document.addEventListener('keydown',key)})}
+});
