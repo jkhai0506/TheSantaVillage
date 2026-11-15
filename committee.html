@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Committee | The Santa Village</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* GENERAL */
+
+        .committee-page {
+            min-height: 100vh;
+            padding: 55px 4% 75px;
+            background-color: #fbf8ed;
+            position: relative;
+            overflow: hidden;
+            color: #302522;
+        }
+
+        .committee-page * {
+            box-sizing: border-box;
+        }
+
+
+        /* HEADING */
+
+        .committee-heading {
+            max-width: 1200px;
+            margin: 0 auto 45px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .committee-heading h1 {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(42px, 6vw, 68px);
+            font-weight: 700;
+            margin: 0 0 10px;
+            color: #302522;
+        }
+
+        .committee-heading p {
+            font-family: 'Patrick Hand', cursive;
+            font-size: clamp(19px, 2.5vw, 27px);
+            letter-spacing: 2px;
+            margin: 0;
+            color: #302522;
+        }
+
+
+        /* COMMITTEE GRID */
+
+        .committee-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 38px;
+
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* COMMITTEE CARD */
+
+        .committee-card {
+            min-height: 310px;
+            padding: 35px 20px;
+
+            border: 1px solid #81766c;
+            border-radius: 40px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            text-decoration: none;
+
+            color: #302522;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        /* CARD COLORS */
+
+        .committee-card.blue {
+            background: #d8e5f2;
+        }
+
+        .committee-card.pink {
+            background: #efd8d3;
+        }
+
+        .committee-card.yellow {
+            background: #f7edc7;
+        }
+
+
+        /* HOVER EFFECT */
+
+        .committee-card:hover {
+            transform: translateY(-7px) rotate(-1deg);
+            box-shadow: 5px 10px 0 rgba(60, 48, 40, 0.10);
+        }
+
+
+        /* ICON */
+
+        .committee-icon {
+            font-size: 76px;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            color: #302522;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 90px;
+        }
+
+        .committee-icon i {
+            font-size: 76px;
+        }
+
+
+        /* DEPARTMENT NAME */
+
+        .committee-card h3 {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(23px, 2.5vw, 31px);
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+
+        /* DECORATIVE STARS */
+
+        .committee-page::before {
+            content: "★       ☆       ★       ☆       ★";
+
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+
+            font-size: 27px;
+            letter-spacing: 80px;
+
+            color: #b9cbe5;
+            white-space: nowrap;
+            opacity: 0.8;
+
+            pointer-events: none;
+        }
+
+        .committee-page::after {
+            content: "☆       ★       ☆       ★       ☆";
+
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+
+            font-size: 30px;
+            letter-spacing: 75px;
+
+            color: #e3dda9;
+            white-space: nowrap;
+            opacity: 0.8;
+
+            pointer-events: none;
+        }
+
+
+        /* TABLET */
+
+        @media (max-width: 900px) {
+
+            .committee-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 25px;
+            }
+
+            .committee-card {
+                min-height: 260px;
+            }
+
+            .committee-icon {
+                font-size: 65px;
+            }
+
+            .committee-icon i {
+                font-size: 65px;
+            }
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 550px) {
+
+            .committee-page {
+                padding: 35px 18px 55px;
+            }
+
+            .committee-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .committee-card {
+                min-height: 220px;
+                border-radius: 30px;
+            }
+
+            .committee-icon {
+                font-size: 60px;
+                height: 70px;
+                margin-bottom: 15px;
+            }
+
+            .committee-icon i {
+                font-size: 60px;
+            }
+
+            .committee-heading {
+                margin-bottom: 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<main class="committee-page">
+
+
+    <!-- HEADING -->
+
+    <div class="committee-heading">
+
+         <a href="index.html" class="back-button">
+        ← Back to Home
+         </a>
+
+        <h1>Meet the Committee ✦</h1>
+
+        <p>Tap a department to see the team photo.</p>
+
+    </div>
+
+
+    <!-- COMMITTEE DEPARTMENTS -->
+
+    <div class="committee-grid">
+
+
+        <!-- CORE COMMITTEE -->
+
+        <a href="#" class="committee-card blue">
+
+            <div class="committee-icon">👑</div>
+
+            <h3>Core Committee</h3>
+
+        </a>
+
+
+        <!-- CHAIR DEPARTMENT -->
+
+        <a href="Department/chair.html" class="committee-card pink">
+
+            <div class="committee-icon">🎨</div>
+
+            <h3>Chair Department</h3>
+
+        </a>
+
+
+        <!-- DECORATION DEPARTMENT -->
+
+        <a href="Department/decoration.html" class="committee-card yellow">
+
+            <div class="committee-icon">🎀</div>
+
+            <h3>Decoration Department</h3>
+
+        </a>
+
+
+        <!-- HUMAN RESOURCES DEPARTMENT -->
+
+        <a href="Department/hr.html" class="committee-card blue">
+
+            <div class="committee-icon">👥</div>
+
+            <h3>Human Resources Department</h3>
+
+        </a>
+
+
+        <!-- LOGISTICS DEPARTMENT -->
+
+        <a href="Department/logistic.html" class="committee-card pink">
+
+            <div class="committee-icon">
+                <i class="fa-solid fa-truck-fast"></i>
+            </div>
+
+            <h3>Logistics Department</h3>
+
+        </a>
+
+
+        <!-- PROGRAMME DEPARTMENT -->
+
+        <a href="Department/programme.html" class="committee-card yellow">
+
+            <div class="committee-icon">🎵</div>
+
+            <h3>Programme Department</h3>
+
+        </a>
+
+
+        <!-- PUBLIC RELATION DEPARTMENT -->
+
+        <a href="Department/public-relation.html" class="committee-card blue">
+
+            <div class="committee-icon">📣</div>
+
+            <h3>Public Relation Department</h3>
+
+        </a>
+
+
+        <!-- PUBLICITY DEPARTMENT -->
+
+        <a href="Department/publicity.html" class="committee-card pink">
+
+            <div class="committee-icon">📢</div>
+
+            <h3>Publicity Department</h3>
+
+        </a>
+
+
+        <!-- SALES AND MARKETING DEPARTMENT -->
+
+        <a href="Department/sales-marketing.html" class="committee-card yellow">
+
+            <div class="committee-icon">🛍️</div>
+
+            <h3>Sales and Marketing Department</h3>
+
+        </a>
+
+
+        <!-- SECRETARY DEPARTMENT -->
+
+        <a href="Department/secretary.html" class="committee-card blue">
+
+            <div class="committee-icon">📋</div>
+
+            <h3>Secretary Department</h3>
+
+        </a>
+
+
+        <!-- SPONSORSHIP DEPARTMENT -->
+
+        <a href="Department/sponsorship.html" class="committee-card pink">
+
+            <div class="committee-icon">🎁</div>
+
+            <h3>Sponsorship Department</h3>
+
+        </a>
+
+
+        <!-- TECHNICAL DEPARTMENT -->
+
+        <a href="Department/technical.html" class="committee-card yellow">
+
+            <div class="committee-icon">⚙️</div>
+
+            <h3>Technical Department</h3>
+
+        </a>
+
+
+        <!-- TREASURY DEPARTMENT -->
+
+        <a href="Department/treasury.html" class="committee-card blue">
+
+            <div class="committee-icon">💰</div>
+
+            <h3>Treasury Department</h3>
+
+        </a>
+
+
+    </div>
+
+</main>
+
+</body>
+
+</html>
