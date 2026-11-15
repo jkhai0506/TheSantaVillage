@@ -1,0 +1,1586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stage | The Santa Village</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Patrick+Hand&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+
+<style>
+
+/* =====================================
+   GENERAL
+===================================== */
+
+#stage,
+#stage * {
+    box-sizing: border-box;
+}
+
+#stage {
+    overflow: hidden;
+}
+
+#stage h2 {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+#stage h2 svg {
+    width: 55px;
+    height: 85px;
+}
+
+
+/* =====================================
+   THEATRE STAGE
+===================================== */
+
+.stg {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 550px;
+    margin-top: 28px;
+
+    border: 1px solid var(--lnk, #81766c);
+    border-radius: 12px;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255,250,220,.9),
+            transparent 65%
+        ),
+        #f8e7bd;
+
+    isolation: isolate;
+}
+
+
+/* =====================================
+   CURTAINS
+===================================== */
+
+.cur {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    width: 50.5%;
+    z-index: 5;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #a7473c 0 16px,
+            #c45d50 16px 32px,
+            #b34e43 32px 48px
+        );
+
+    box-shadow:
+        inset 0 0 40px rgba(0,0,0,.28),
+        inset 10px 0 15px rgba(255,255,255,.08);
+
+    transition:
+        transform 1.7s cubic-bezier(.65,0,.25,1);
+}
+
+.cl {
+    left: 0;
+}
+
+.cr {
+    right: 0;
+}
+
+.cur::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 18px,
+            rgba(70,15,10,.15) 19px 24px,
+            transparent 25px 42px
+        );
+}
+
+.curtain-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 32px;
+    z-index: 6;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #963e35 0 28px,
+            #c45b4c 28px 56px
+        );
+
+    border-bottom: 3px solid #814238;
+
+    transition: opacity .7s;
+}
+
+
+/* OPEN CURTAINS */
+
+.stg.open .cl {
+    transform: translateX(-102%);
+}
+
+.stg.open .cr {
+    transform: translateX(102%);
+}
+
+.stg.open .curtain-top {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =====================================
+   CURTAIN BUTTON
+===================================== */
+
+.stgb {
+    all: unset;
+    box-sizing: border-box;
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 7;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+
+    color: white;
+    text-align: center;
+
+    font-family: 'Gaegu', cursive;
+    font-size: clamp(30px,4vw,43px);
+
+    letter-spacing: 2px;
+
+    text-shadow: 0 3px 12px rgba(0,0,0,.45);
+
+    transition: opacity .4s;
+}
+
+.stgb:hover {
+    color: #fff1c9;
+}
+
+.stgb span {
+    display: block;
+    animation: stagePulse 2s ease-in-out infinite;
+}
+
+.stgb small {
+    display: block;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+@keyframes stagePulse {
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+.stg.open .stgb {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* =====================================
+   LINEUP
+===================================== */
+
+.lineup {
+    position: relative;
+    z-index: 1;
+
+    padding: 55px 30px 45px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity .9s ease 1.1s,
+        transform .9s ease 1.1s,
+        visibility 0s linear 1.1s;
+}
+
+.stg.open .lineup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+
+    transition:
+        opacity .9s ease 1.1s,
+        transform .9s ease 1.1s,
+        visibility 0s;
+}
+
+.lineup-title {
+    text-align: center;
+
+    font-family: 'Gaegu', cursive;
+    font-size: clamp(35px,5vw,52px);
+
+    margin: 0 0 8px;
+}
+
+.lineup-subtitle {
+    text-align: center;
+
+    color: var(--soft,#81766c);
+
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+
+/* =====================================
+   TABS
+===================================== */
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+    margin: 0 0 35px;
+}
+
+.rst {
+    all: unset;
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    font-family: 'Gaegu', cursive;
+    font-size: 23px;
+
+    padding: 8px 25px;
+
+    border: 1px solid var(--lnk,#81766c);
+    border-radius: 30px;
+
+    transition: .25s;
+}
+
+.rst:hover,
+.rst.on {
+    background: var(--yel,#f7edc7);
+    transform: translateY(-2px);
+}
+
+.rst:focus-visible {
+    outline: 2px dashed #81766c;
+    outline-offset: 4px;
+}
+
+
+/* =====================================
+   PERFORMER HEADING
+===================================== */
+
+.performer-heading {
+    text-align: center;
+
+    font-family: 'Gaegu', cursive;
+    font-size: 30px;
+
+    margin: 0 0 5px;
+}
+
+.performer-subheading {
+    text-align: center;
+
+    color: var(--soft,#81766c);
+    font-size: 19px;
+
+    margin: 0 0 30px;
+}
+
+
+/* =====================================
+   PERFORMER GRID
+===================================== */
+
+.performer-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3,minmax(0,1fr));
+
+    gap: 25px;
+
+    max-width: 1100px;
+    margin: auto;
+}
+
+
+/* =====================================
+   PERFORMER FLIP CARD
+===================================== */
+
+.performer-card {
+    width: 100%;
+    min-width: 0;
+
+    perspective: 1100px;
+
+    cursor: pointer;
+    outline: none;
+}
+
+.performer-inner {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 3 / 4;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .85s cubic-bezier(.4,.2,.2,1);
+}
+
+.performer-card.flipped .performer-inner {
+    transform: rotateY(180deg);
+}
+
+
+/* FRONT AND BACK */
+
+.performer-face {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border: 1px solid var(--lnk,#81766c);
+    border-radius: 24px;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px;
+    text-align: center;
+}
+
+
+/* FRONT */
+
+.performer-front {
+    background: #d8e5f2;
+}
+
+.performer-card:nth-child(3n+2) .performer-front {
+    background: #efd8d3;
+}
+
+.performer-card:nth-child(3n) .performer-front {
+    background: #f7edc7;
+}
+
+.performer-front img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 17px;
+
+    display: block;
+}
+
+.performer-front::after {
+    content: "✦ TAP TO DISCOVER ✦";
+
+    position: absolute;
+    bottom: 22px;
+
+    padding: 8px 15px;
+
+    background: rgba(48,37,34,.78);
+    color: white;
+
+    border-radius: 25px;
+
+    font-family: 'Gaegu', cursive;
+    font-size: 16px;
+
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+
+/* BACK */
+
+.performer-back {
+    transform: rotateY(180deg);
+
+    background: #efd8d3;
+
+    gap: 14px;
+    padding: 20px;
+}
+
+.performer-card:nth-child(3n+1) .performer-back {
+    background: #d8e5f2;
+}
+
+.performer-card:nth-child(3n) .performer-back {
+    background: #f7edc7;
+}
+
+.performer-back .star {
+    font-size: 42px;
+}
+
+.performer-back h3 {
+    font-family: 'Gaegu', cursive;
+
+    font-size: clamp(23px,2.5vw,32px);
+    line-height: 1.2;
+
+    margin: 0;
+
+    overflow-wrap: anywhere;
+}
+
+.performer-back p {
+    font-size: 18px;
+    margin: 0;
+    color: #746b60;
+}
+
+
+/* =====================================
+   INSTAGRAM BUTTON
+===================================== */
+
+.performer-ig,
+.ig-button {
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 18px;
+
+    background: #302522;
+    color: #fffaf0;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-family: 'Gaegu', cursive;
+    font-size: 19px;
+
+    transition: .25s;
+}
+
+.performer-ig:hover,
+.ig-button:hover {
+    background: #b86d72;
+    transform: translateY(-3px);
+}
+
+.performer-ig svg,
+.ig-button svg {
+    width: 19px;
+    height: 19px;
+}
+
+.performer-card:focus-visible .performer-inner {
+    outline: 3px dashed #81766c;
+    outline-offset: 5px;
+}
+
+
+/* =====================================
+   KOL CARD
+===================================== */
+
+.kol-grid {
+    display: grid;
+
+    grid-template-columns: minmax(0,360px);
+
+    justify-content: center;
+}
+
+.kol-card {
+    background: #f0d9d3;
+
+    border: 1px solid var(--lnk,#81766c);
+    border-radius: 25px;
+
+    padding: 15px;
+
+    text-align: center;
+}
+
+.kol-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+
+    perspective: 1000px;
+}
+
+.kol-flip {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    transition: transform .9s ease;
+}
+
+.kol-flip.flipped {
+    transform: rotateY(180deg);
+}
+
+.kol-flip-face {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+    border-radius: 17px;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.kol-flip-face img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.kol-front {
+    transform: rotateY(0deg);
+}
+
+.kol-back {
+    transform: rotateY(180deg);
+}
+
+.kol-card h3 {
+    font-family: 'Gaegu', cursive;
+    font-size: 32px;
+    margin: 15px 0 5px;
+}
+
+.kol-card p {
+    font-size: 20px;
+    margin: 5px 0 15px;
+}
+
+.kol-flip-hint {
+    font-family: 'Gaegu', cursive;
+    font-size: 17px;
+
+    color: #746b60;
+    margin: 10px 0;
+}
+
+
+/* =====================================
+   HIDDEN PANEL
+===================================== */
+
+#stage [hidden] {
+    display: none !important;
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:850px) {
+
+    .stg {
+        min-height: 470px;
+    }
+
+    .performer-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .lineup {
+        padding: 40px 20px;
+    }
+
+}
+
+@media (max-width:550px) {
+
+    .stg {
+        min-height: 430px;
+    }
+
+    .cur {
+        width: 51%;
+    }
+
+    .lineup {
+        padding: 35px 12px;
+    }
+
+    .performer-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 340px;
+        gap: 20px;
+    }
+
+    .performer-back h3 {
+        font-size: 30px;
+    }
+
+    .kol-grid {
+        grid-template-columns: minmax(0,1fr);
+        max-width: 360px;
+        margin: auto;
+    }
+
+    .lineup-title {
+        font-size: 36px;
+    }
+
+    .rst {
+        font-size: 20px;
+        padding: 7px 19px;
+    }
+
+    .stgb {
+        font-size: 30px;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+    .cur,
+    .lineup,
+    .performer-inner,
+    .kol-flip,
+    .stgb span {
+        transition: none !important;
+        animation: none !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     MICROPHONE ICON
+===================================== -->
+
+<svg aria-hidden="true" width="0" height="0"
+     style="position:absolute">
+
+    <symbol id="mic" viewBox="0 0 60 100">
+
+        <rect
+            fill="#d6e5f5"
+            stroke="#6a5850"
+            height="46"
+            rx="12"
+            width="24"
+            x="18"
+            y="6"
+        />
+
+        <path
+            fill="none"
+            stroke="#6a5850"
+            d="M8 40Q8 68 30 68T52 40M30 68V90M16 92H44M18 24h24M18 34h24"
+        />
+
+    </symbol>
+
+</svg>
+
+
+<!-- =====================================
+     NAVIGATION
+===================================== -->
+
+<nav aria-label="Main navigation">
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="activities.html">Activities</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="booths.html">Booths</a>
+    <a href="floor-plan.html">Floor plan</a>
+    <a href="committee.html">Committee</a>
+    <a href="stage.html">Stage</a>
+    <a href="merch.html">Merch</a>
+    <a href="lucky-draw.html">Lucky draw</a>
+    <a href="rules.html">Rules</a>
+
+</nav>
+
+
+<main>
+
+
+<!-- =====================================
+     STAGE
+===================================== -->
+
+<section class="slide cream" id="stage">
+
+
+    <h2>
+
+        Performers and KoL
+
+        <svg viewBox="0 0 60 100">
+            <use href="#mic" width="60" height="100"></use>
+        </svg>
+
+    </h2>
+
+
+    <p>
+        Raise the curtain to meet tonight’s lineup.
+    </p>
+
+
+    <!-- THEATRE -->
+
+    <div class="stg" id="stg">
+
+
+        <div class="cl cur"></div>
+
+        <div class="cr cur"></div>
+
+        <div class="curtain-top"></div>
+
+
+        <!-- OPEN CURTAIN -->
+
+        <button
+            class="stgb"
+            id="openCurtain"
+            type="button"
+            aria-expanded="false"
+            aria-controls="stageLineup"
+        >
+
+            <span>
+
+                Tonight’s Lineup
+
+                <small>
+                    ✦ CLICK TO OPEN THE CURTAIN ✦
+                </small>
+
+            </span>
+
+        </button>
+
+
+        <!-- =====================================
+             LINEUP
+        ====================================== -->
+
+        <div class="lineup" id="stageLineup">
+
+
+            <h2 class="lineup-title">
+                ✦ The Show Begins! ✦
+            </h2>
+
+
+            <p class="lineup-subtitle">
+                Meet the amazing people joining our Christmas celebration.
+            </p>
+
+
+            <!-- TABS -->
+
+            <div class="tabs">
+
+                <button
+                    class="rst on"
+                    data-k="p"
+                    type="button"
+                    aria-selected="true"
+                >
+                    ♪ Performers
+                </button>
+
+                <button
+                    class="rst"
+                    data-k="k"
+                    type="button"
+                    aria-selected="false"
+                >
+                    ✦ KoL Guest
+                </button>
+
+            </div>
+
+
+            <!-- =====================================
+                 PERFORMERS
+            ====================================== -->
+
+            <div id="performersPanel">
+
+
+                <h3 class="performer-heading">
+                    ✦ Meet Our Performers ✦
+                </h3>
+
+
+                <p class="performer-subheading">
+                    Tap a photo to discover more!
+                </p>
+
+
+                <div class="performer-grid">
+
+
+                    <!-- 01 LEE SHI BANG -->
+
+                    <div class="performer-card"
+                         tabindex="0"
+                         role="button"
+                         aria-pressed="false">
+
+                        <div class="performer-inner">
+
+                            <div class="performer-face performer-front">
+
+                                <img
+                                    src="images/Lee%20Shi%20Bang.jpg"
+                                    alt="Lee Shi Bang"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="performer-face performer-back">
+
+                                <div class="star">✦</div>
+
+                                <h3>Lee Shi Bang</h3>
+
+                                <p>Our Christmas Performer</p>
+
+                                <a
+                                    href="#"
+                                    class="performer-ig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram Profile ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 02 LIM CHEAH XING THONG -->
+
+                    <div class="performer-card"
+                         tabindex="0"
+                         role="button"
+                         aria-pressed="false">
+
+                        <div class="performer-inner">
+
+                            <div class="performer-face performer-front">
+
+                                <img
+                                    src="images/Xingthong.jpg"
+                                    alt="Lim Cheah Xing Thong"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="performer-face performer-back">
+
+                                <div class="star">✦</div>
+
+                                <h3>Lim Cheah Xing Thong</h3>
+
+                                <p>Our Christmas Performer</p>
+
+                                <a
+                                    href="#"
+                                    class="performer-ig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram Profile ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 03 LOW XIN YI -->
+
+                    <div class="performer-card"
+                         tabindex="0"
+                         role="button"
+                         aria-pressed="false">
+
+                        <div class="performer-inner">
+
+                            <div class="performer-face performer-front">
+
+                                <img
+                                    src="images/Low%20Xin%20Yi.jpg"
+                                    alt="Low Xin Yi"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="performer-face performer-back">
+
+                                <div class="star">✦</div>
+
+                                <h3>Low Xin Yi</h3>
+
+                                <p>Our Christmas Performer</p>
+
+                                <a
+                                    href="#"
+                                    class="performer-ig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram Profile ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 04 PUDC -->
+
+                    <div class="performer-card"
+                         tabindex="0"
+                         role="button"
+                         aria-pressed="false">
+
+                        <div class="performer-inner">
+
+                            <div class="performer-face performer-front">
+
+                                <img
+                                    src="images/PUDC.jpg"
+                                    alt="PUDC"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="performer-face performer-back">
+
+                                <div class="star">✦</div>
+
+                                <h3>PUDC</h3>
+
+                                <p>Our Christmas Performer</p>
+
+                                <a
+                                    href="#"
+                                    class="performer-ig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram Profile ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 05 SHAMPOO -->
+
+                    <div class="performer-card"
+                         tabindex="0"
+                         role="button"
+                         aria-pressed="false">
+
+                        <div class="performer-inner">
+
+                            <div class="performer-face performer-front">
+
+                                <img
+                                    src="images/Shampoo.JPEG"
+                                    alt="Shampoo"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="performer-face performer-back">
+
+                                <div class="star">✦</div>
+
+                                <h3>Shampoo</h3>
+
+                                <p>Our Christmas Performer</p>
+
+                                <a
+                                    href="#"
+                                    class="performer-ig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram Profile ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 06 UPO -->
+
+                    <div class="performer-card"
+                         tabindex="0"
+                         role="button"
+                         aria-pressed="false">
+
+                        <div class="performer-inner">
+
+                            <div class="performer-face performer-front">
+
+                                <img
+                                    src="images/UPO.jpg"
+                                    alt="UPO"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="performer-face performer-back">
+
+                                <div class="star">✦</div>
+
+                                <h3>UPO</h3>
+
+                                <p>Our Christmas Performer</p>
+
+                                <a
+                                    href="#"
+                                    class="performer-ig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram Profile ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 07 VWAFFLES -->
+
+                    <div class="performer-card"
+                         tabindex="0"
+                         role="button"
+                         aria-pressed="false">
+
+                        <div class="performer-inner">
+
+                            <div class="performer-face performer-front">
+
+                                <img
+                                    src="images/VVaffles.jpg"
+                                    alt="VWaffles"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="performer-face performer-back">
+
+                                <div class="star">✦</div>
+
+                                <h3>VWaffles</h3>
+
+                                <p>Our Christmas Performer</p>
+
+                                <a
+                                    href="#"
+                                    class="performer-ig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram Profile ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 08 YLAU & LUNADES -->
+
+                    <div class="performer-card"
+                         tabindex="0"
+                         role="button"
+                         aria-pressed="false">
+
+                        <div class="performer-inner">
+
+                            <div class="performer-face performer-front">
+
+                                <img
+                                    src="images/YLau%20%26%20Lunades.jpg"
+                                    alt="YLau and Lunades"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="performer-face performer-back">
+
+                                <div class="star">✦</div>
+
+                                <h3>YLau &amp; Lunades</h3>
+
+                                <p>Our Christmas Performer</p>
+
+                                <a
+                                    href="#"
+                                    class="performer-ig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram Profile ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 KOL GUEST
+            ====================================== -->
+
+            <div class="kol-grid" id="kolPanel" hidden>
+
+
+                <div class="kol-card">
+
+
+                    <!-- KOL PHOTO FLIP -->
+
+                    <div class="kol-photo">
+
+                        <button
+                            class="kol-flip"
+                            type="button"
+                            aria-label="Flip KOL photo"
+                            aria-pressed="false"
+                        >
+
+                            <div class="kol-flip-face kol-front">
+
+                                <img
+                                    src="images/Bell.jpeg"
+                                    alt="Bell Fu Xi Ya front photo"
+                                >
+
+                            </div>
+
+
+                            <div class="kol-flip-face kol-back">
+
+                                <img
+                                    src="images/yutian.jpeg"
+                                    alt="Bell Fu Xi Ya second photo"
+                                >
+
+                            </div>
+
+                        </button>
+
+                    </div>
+
+
+                    <p class="kol-flip-hint">
+                        ✦ Tap the photo to flip! ✦
+                    </p>
+
+
+                    <h3>Bell Fu Xi Ya</h3>
+
+                    <p>Special Guest ✨</p>
+
+
+                    <a
+                        href="https://www.instagram.com/bellyutian?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw=="
+                        class="ig-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Visit Instagram Profile ↗
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     PAGE NAVIGATION
+===================================== -->
+
+<div class="band page-pager">
+
+    <a href="committee.html">
+        ← Committee
+    </a>
+
+    <span class="bt">
+        The Santa Village
+    </span>
+
+    <a href="merch.html">
+        Merch →
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================
+     FOOTER
+===================================== -->
+
+<footer>
+
+    <div class="script">
+        Merry Christmas
+    </div>
+
+    <p>
+        See you under the clock.
+    </p>
+
+    <a href="index.html" class="footer-home">
+        BACK TO HOME ↑
+    </a>
+
+</footer>
+
+
+<!-- =====================================
+     ORIGINAL SCRIPT
+===================================== -->
+
+<script src="script.js"></script>
+
+
+<!-- =====================================
+     STAGE JAVASCRIPT
+===================================== -->
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    /* =====================================
+       OPEN CURTAIN
+    ===================================== */
+
+    const stage = document.getElementById('stg');
+
+    const curtainButton =
+        document.getElementById('openCurtain');
+
+    curtainButton.addEventListener('click', function () {
+
+        stage.classList.add('open');
+
+        curtainButton.setAttribute(
+            'aria-expanded',
+            'true'
+        );
+
+    });
+
+
+    /* =====================================
+       TAB SWITCHING
+    ===================================== */
+
+    const performerTab =
+        document.querySelector('[data-k="p"]');
+
+    const kolTab =
+        document.querySelector('[data-k="k"]');
+
+    const performerPanel =
+        document.getElementById('performersPanel');
+
+    const kolPanel =
+        document.getElementById('kolPanel');
+
+
+    performerTab.addEventListener('click', function () {
+
+        performerPanel.hidden = false;
+        kolPanel.hidden = true;
+
+        performerTab.classList.add('on');
+        kolTab.classList.remove('on');
+
+        performerTab.setAttribute(
+            'aria-selected',
+            'true'
+        );
+
+        kolTab.setAttribute(
+            'aria-selected',
+            'false'
+        );
+
+    });
+
+
+    kolTab.addEventListener('click', function () {
+
+        kolPanel.hidden = false;
+        performerPanel.hidden = true;
+
+        kolTab.classList.add('on');
+        performerTab.classList.remove('on');
+
+        kolTab.setAttribute(
+            'aria-selected',
+            'true'
+        );
+
+        performerTab.setAttribute(
+            'aria-selected',
+            'false'
+        );
+
+    });
+
+
+    /* =====================================
+       PERFORMER CARD FLIP
+    ===================================== */
+
+    const performerCards =
+        document.querySelectorAll('.performer-card');
+
+
+    performerCards.forEach(function (card) {
+
+
+        function flipCard() {
+
+            const flipped =
+                card.classList.toggle('flipped');
+
+            card.setAttribute(
+                'aria-pressed',
+                flipped ? 'true' : 'false'
+            );
+
+        }
+
+
+        // Mouse / touch click
+
+        card.addEventListener('click', function (event) {
+
+            // Do not flip when Instagram link is clicked
+
+            if (event.target.closest('a')) {
+                return;
+            }
+
+            flipCard();
+
+        });
+
+
+        // Keyboard accessibility
+
+        card.addEventListener('keydown', function (event) {
+
+            if (event.target.closest('a')) {
+                return;
+            }
+
+            if (
+                event.key === 'Enter' ||
+                event.key === ' '
+            ) {
+
+                event.preventDefault();
+
+                flipCard();
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================
+       KOL PHOTO FLIP
+    ===================================== */
+
+    const kolFlip =
+        document.querySelector('.kol-flip');
+
+    if (kolFlip) {
+
+        kolFlip.addEventListener('click', function () {
+
+            this.classList.toggle('flipped');
+
+            const isFlipped =
+                this.classList.contains('flipped');
+
+            this.setAttribute(
+                'aria-pressed',
+                isFlipped ? 'true' : 'false'
+            );
+
+        });
+
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>
