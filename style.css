@@ -340,26 +340,6 @@ body {
     }
 }
 
-/* Keep the site in its original light palette even on dark-mode phones. */
-:root,
-:root[data-theme="dark"] {
-    color-scheme: light !important;
-    --bd: #dce6f7;
-    --paper: #fffdf4;
-    --cream: #fff9e0;
-    --blue: #d3e2f6;
-    --pink: #f6d3cc;
-    --lav: #c9d8ef;
-    --yel: #f7ecb0;
-    --sage: #b7cba0;
-    --mar: #a64b34;
-    --red: #c8372d;
-    --ink: #2a2224;
-    --soft: #7d6f72;
-    --line: #2a2224;
-    --sh: rgba(70,95,140,.22);
-    --lnk: #6a5850;
-}
 
 html {
     color-scheme: light !important;
