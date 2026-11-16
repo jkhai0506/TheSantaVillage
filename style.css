@@ -128,6 +128,7 @@ p{letter-spacing:.07em}
 .rst{all:unset;cursor:pointer;font-size:22px;padding:4px 22px;border:1px solid var(--lnk);border-radius:30px}.rst:hover,.rst:focus-visible{background:var(--yel)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
 
+
 .merchs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px;margin-top:28px}
 .mc{background:var(--paper);border:1px solid var(--lnk);border-radius:22px 28px 20px 30px;padding:18px;text-align:center;transition:transform .3s}.mc:hover{transform:rotate(-1.5deg) translateY(-5px)}
 .mc>svg{width:130px;height:130px}.mc h3{margin:4px 0 0}.mc p{margin:2px 0 8px;font-size:18px}.pr{display:flex;align-items:center;justify-content:center;gap:16px}.pr b{font-size:26px;font-weight:400;color:var(--red)}
@@ -178,88 +179,171 @@ html.gated,html.gated body{overflow:hidden}
     display: inline-block;
     text-decoration: none;
     color: #302522;
+
     border: 1px solid #9c8b73;
     border-radius: 30px;
+
     padding: 10px 23px;
     font-size: 19px;
+
     margin-bottom: 30px;
+
     transition: 0.25s;
 }
+
 .back-button:hover {
     background: #e9dfc8;
     transform: translateY(-3px);
-}
-.committee-icon {
+}.committee-icon {
     width: 165px;
     height: 150px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     margin-bottom: 15px;
+
     transition: transform .3s ease;
 }
+
 .committee-icon img {
     width: 100%;
     height: 100%;
+
     object-fit: contain;
     display: block;
+
+    /* Keep original illustration colours */
     mix-blend-mode: normal;
     background: transparent;
 }
+
 .committee-card:hover .committee-icon {
     transform: scale(1.08) rotate(-3deg);
 }
 
-/* =====================================
-   MOBILE NAVIGATION FIX
-   ===================================== */
+/* =====================================================
+   THE SANTA VILLAGE — MOBILE NAVIGATION / OVERFLOW FIX
+   Keep the desktop navigation unchanged.
+   ===================================================== */
 
-@media (max-width: 600px) {
-    nav:not(.cts) {
+/* The icon grid on the home page is content, not a sticky menu. */
+nav.cts {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+    overflow: visible !important;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Prevent the document itself from moving sideways on phones.
+   Vertical scrolling remains enabled. */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 700px) {
+    /* Main navigation: allow links to wrap instead of being cut off
+       in a horizontally scrolling sticky strip. */
+    body > nav[aria-label="Main navigation"] {
+        position: static !important;
+        top: auto !important;
+        z-index: 5;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        gap: 6px;
+        gap: 4px 6px;
         width: 100%;
         max-width: 100%;
-        overflow-x: visible;
+        overflow: visible !important;
         padding: 8px 10px;
-        font-size: 16px;
+        font-size: 17px;
+        line-height: 1.25;
     }
 
-    nav:not(.cts) a {
+    body > nav[aria-label="Main navigation"] a {
         flex: 0 1 auto;
-        white-space: nowrap;
-        padding: 4px 9px;
-        font-size: 16px;
-        line-height: 1.35;
-    }
-}
-
-/* Extra-small phones */
-@media (max-width: 380px) {
-    nav:not(.cts) {
-        gap: 4px;
-        padding: 7px 6px;
-    }
-
-    nav:not(.cts) a {
+        min-width: 0;
+        max-width: 100%;
         padding: 4px 7px;
-        font-size: 14px;
+        white-space: normal;
+        text-align: center;
+        font-size: inherit;
+        line-height: 1.25;
+    }
+
+    /* Home-page icon links: fixed two-column grid, never sticky. */
+    nav.cts {
+        position: static !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+        justify-items: stretch;
+        gap: 22px 12px;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 26px;
+        padding: 0;
+        overflow: visible !important;
+    }
+
+    nav.cts .ct {
+        display: block;
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-align: center;
+    }
+
+    nav.cts .ct svg {
+        max-width: 100%;
+    }
+
+    /* Keep page sections inside the phone viewport. */
+    main {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .slide {
+        min-width: 0;
+        max-width: 100%;
     }
 }
 
-/* =========================================
-   FORCE LIGHT MODE - ENTIRE WEBSITE
-   ========================================= */
+@media screen and (max-width: 380px) {
+    body > nav[aria-label="Main navigation"] {
+        gap: 3px 4px;
+        padding: 7px 6px;
+        font-size: 15px;
+    }
 
+    body > nav[aria-label="Main navigation"] a {
+        padding: 3px 5px;
+    }
+
+    nav.cts {
+        gap: 18px 8px;
+    }
+
+    .ct {
+        font-size: 20px;
+    }
+}
+
+/* Keep the site in its original light palette even on dark-mode phones. */
 :root,
-:root[data-theme="dark"],
-:root:not([data-theme="light"]) {
-
+:root[data-theme="dark"] {
     color-scheme: light !important;
-
     --bd: #dce6f7;
     --paper: #fffdf4;
     --cream: #fff9e0;
@@ -277,57 +361,6 @@ html.gated,html.gated body{overflow:hidden}
     --lnk: #6a5850;
 }
 
-/* Keep browser form elements in light mode */
 html {
     color-scheme: light !important;
 }
-
-body {
-    background: #dce6f7 !important;
-    color: #2a2224;
-}
-
-/* Prevent dark-mode background changes */
-@media (prefers-color-scheme: dark) {
-    html,
-    body {
-        color-scheme: light !important;
-        background-color: #dce6f7;
-    }
-}
-
-/* =====================================
-   FIX MOBILE CONTENT OVERLAPPING
-   ===================================== */
-
-/* Homepage contents navigation */
-nav.cts {
-    position: static !important;
-    top: auto !important;
-    z-index: auto !important;
-
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    width: 100%;
-    max-width: 100%;
-
-    overflow: visible !important;
-    padding: 0;
-    margin-top: 26px;
-}
-
-/* Prevent horizontal overflow */
-nav.cts .ct {
-    min-width: 0;
-    width: 100%;
-}
-
-/* Keep normal page scrolling */
-html,
-body {
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
