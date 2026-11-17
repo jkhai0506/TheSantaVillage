@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Publicity Department | The Santa Village</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #fbf8ed;
+            color: #302522;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        /* MAIN PAGE */
+
+        .department-page {
+            min-height: 100vh;
+            padding: 45px 5% 70px;
+            position: relative;
+        }
+
+        /* HEADER */
+
+        .department-header {
+            max-width: 1250px;
+            margin: 0 auto 35px;
+        }
+
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            color: #302522;
+            border: 1px solid #9c8b73;
+            border-radius: 30px;
+            padding: 10px 23px;
+            font-size: 19px;
+            margin-bottom: 30px;
+            transition: 0.25s;
+        }
+
+        .back-button:hover {
+            background: #e9dfc8;
+            transform: translateY(-3px);
+        }
+
+        .department-header h1 {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(38px, 6vw, 68px);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .department-header p {
+            font-size: 25px;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        /* GROUP PHOTO */
+
+        .group-section {
+            max-width: 1250px;
+            margin: 0 auto 60px;
+
+            opacity: 0;
+            transform: scale(0.85);
+
+            animation: dramaticReveal 1.5s
+                       cubic-bezier(0.16, 1, 0.3, 1)
+                       forwards;
+        }
+
+        .group-card {
+            background: #f0d9d3;
+            border: 2px solid #81766c;
+            border-radius: 30px;
+            padding: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(60, 48, 40, 0.08);
+        }
+
+        .group-card a {
+            display: block;
+            border-radius: 22px;
+            overflow: hidden;
+        }
+
+        /* FULL PHOTO - NO CROPPING */
+
+        .group-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 22px;
+            animation: photoZoom 1.8s ease forwards;
+        }
+
+        .group-caption {
+            text-align: center;
+            padding: 18px 10px 8px;
+        }
+
+        .group-caption h2 {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(32px, 4vw, 45px);
+            margin: 0;
+        }
+
+        .group-caption p {
+            font-size: 20px;
+            margin: 8px 0 0;
+            color: #746b60;
+        }
+
+        /* GROUP PHOTO ANIMATION */
+
+        @keyframes dramaticReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            65% {
+                opacity: 1;
+                transform: scale(1.025);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes photoZoom {
+            from {
+                transform: scale(1.12);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* SCROLL MESSAGE */
+
+        .scroll-message {
+            text-align: center;
+            margin: 25px auto 65px;
+            font-family: 'Gaegu', cursive;
+            color: #5b4c45;
+            animation: floatArrow 2s ease-in-out infinite;
+        }
+
+        .scroll-message p {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .scroll-arrow {
+            display: block;
+            font-size: 34px;
+            margin-top: 6px;
+        }
+
+        @keyframes floatArrow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* MEMBERS SECTION */
+
+        .members-section {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .members-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .members-heading h2 {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(34px, 5vw, 50px);
+            margin: 0;
+        }
+
+        .members-heading p {
+            font-size: 22px;
+            margin-top: 8px;
+            color: #746b60;
+        }
+
+        /* PHOTO GRID */
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .photo-card {
+            background: #f0d9d3;
+            border: 1px solid #81766c;
+            border-radius: 25px;
+            padding: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+
+            opacity: 0;
+            transform: translateY(35px);
+        }
+
+        .photo-card:nth-child(3n+1) {
+            background: #d8e5f2;
+        }
+
+        .photo-card:nth-child(3n) {
+            background: #f7edc7;
+        }
+
+        .photo-card.show {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 5px 9px 0 rgba(60, 48, 40, 0.10);
+        }
+
+        .photo-link {
+            display: block;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+            display: block;
+            border-radius: 17px;
+        }
+
+        /* MEMBER NAME */
+
+        .photo-card p {
+            font-family: 'Gaegu', cursive;
+            font-size: 25px;
+            font-weight: 700;
+            text-align: center;
+            margin: 12px 0 5px;
+        }
+
+        /* INSTAGRAM BUTTON */
+
+        .instagram-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 9px;
+
+            width: fit-content;
+            margin: 12px auto 8px;
+
+            padding: 9px 20px;
+
+            background: #302522;
+            color: #fffaf0;
+
+            border-radius: 30px;
+            text-decoration: none;
+
+            font-family: 'Patrick Hand', cursive;
+            font-size: 17px;
+
+            transition: 0.3s ease;
+        }
+
+        .instagram-button:hover {
+            background: #b86d72;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(60, 48, 40, 0.15);
+        }
+
+        .instagram-icon {
+            width: 19px;
+            height: 19px;
+        }
+
+        /* MEMBER ANIMATION */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FOOTER */
+
+        .department-footer {
+            text-align: center;
+            margin-top: 65px;
+            font-family: 'Gaegu', cursive;
+            font-size: 25px;
+            color: #746b60;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 850px) {
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+
+            .photo-card img {
+                height: 260px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 550px) {
+
+            .department-page {
+                padding: 30px 17px 50px;
+            }
+
+            .department-header {
+                margin-bottom: 25px;
+            }
+
+            .department-header p {
+                font-size: 20px;
+            }
+
+            .group-section {
+                margin-bottom: 45px;
+            }
+
+            .group-card {
+                padding: 10px;
+                border-radius: 22px;
+            }
+
+            .group-card a,
+            .group-card img {
+                border-radius: 16px;
+            }
+
+            .group-caption {
+                padding-top: 14px;
+            }
+
+            .group-caption h2 {
+                font-size: 28px;
+            }
+
+            .group-caption p {
+                font-size: 16px;
+            }
+
+            .scroll-message {
+                margin: 20px auto 50px;
+            }
+
+            .scroll-message p {
+                font-size: 23px;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .photo-card img {
+                height: auto;
+                max-height: 420px;
+                object-fit: contain;
+            }
+
+            .instagram-button {
+                font-size: 16px;
+                padding: 9px 18px;
+            }
+
+            .department-footer {
+                font-size: 21px;
+            }
+        }
+
+        /* REDUCED MOTION */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+
+            .group-section {
+                opacity: 1;
+                transform: none;
+            }
+
+            .photo-card {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<main class="department-page">
+
+    <!-- HEADER -->
+
+    <header class="department-header">
+
+        <a href="../committee.html" class="back-button">
+            ← Back to Committee
+        </a>
+
+        <h1>Publicity Department 📣</h1>
+
+        <p>Spreading the Christmas cheer and sharing our story far and wide.</p>
+
+    </header>
+
+
+    <!-- GROUP PHOTO FIRST -->
+
+    <section class="group-section">
+
+        <div class="group-card">
+
+            <a href="../images/Publicity.webp"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <img
+                    src="../images/Publicity.webp"
+                    alt="Publicity Department Group Photo" decoding="async" loading="eager" fetchpriority="high">
+
+            </a>
+
+            <div class="group-caption">
+
+                <h2>✦ Our Publicity Team ✦</h2>
+
+                <p>Capturing the spirit and sharing the magic of The Santa Village 📣</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SCROLL MESSAGE -->
+
+    <div class="scroll-message">
+
+        <p>There's more Christmas magic below!</p>
+
+        <span class="scroll-arrow">↓</span>
+
+    </div>
+
+
+    <!-- INDIVIDUAL MEMBERS -->
+
+    <section class="members-section">
+
+        <div class="members-heading">
+
+            <h2>Meet Our Members ♡</h2>
+
+            <p>The people behind the spotlight!</p>
+
+        </div>
+
+
+        <div class="photo-grid">
+
+
+            <!-- MEMBER 1 -->
+
+            <div class="photo-card">
+
+                <a class="photo-link"
+                   href="../images/Ooi Joey Yee.webp"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <img
+                        src="../images/Ooi Joey Yee.webp"
+                        alt="Ooi Joey Yee" decoding="async" loading="eager" fetchpriority="high">
+
+                </a>
+
+                <p>Ooi Joey Yee</p>
+
+                <!-- Replace USERNAME_1 with Instagram username -->
+
+                <a class="instagram-button"
+                   href="https://www.instagram.com/_joeyyeee?utm_source=ig_web_button_share_sheet&exln=ZDNlZDc0MzIxNw=="
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <svg class="instagram-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <rect x="3" y="3" width="18" height="18" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1"/>
+
+                    </svg>
+
+                    Visit Instagram Profile
+
+                </a>
+
+            </div>
+
+
+            <!-- MEMBER 2 -->
+
+            <div class="photo-card">
+
+                <a class="photo-link"
+                   href="../images/Chuah Ling Fei.webp"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <img
+                        src="../images/Chuah Ling Fei.webp"
+                        alt="Chuah Ling Fei" decoding="async" loading="eager">
+
+                </a>
+
+                <p>Chuah Ling Fei</p>
+
+                <!-- Replace USERNAME_2 with Instagram username -->
+
+                <a class="instagram-button"
+                   href="https://www.instagram.com/clf_0731?utm_source=ig_web_button_share_sheet&xtok=ZDNlZDc0MzIxNw=="
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <svg class="instagram-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <rect x="3" y="3" width="18" height="18" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1"/>
+
+                    </svg>
+
+                    Visit Instagram Profile
+
+                </a>
+
+            </div>
+
+
+            <!-- MEMBER 3 -->
+
+            <div class="photo-card">
+
+                <a class="photo-link"
+                   href="../images/Wong Pei Ning.webp"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <img
+                        src="../images/Wong Pei Ning.webp"
+                        alt="Wong Pei Ning" decoding="async" loading="lazy">
+
+                </a>
+
+                <p>Wong Pei Ning</p>
+
+                <!-- Replace USERNAME_3 with Instagram username -->
+
+                <a class="instagram-button"
+                   href="https://www.instagram.com/pning_06?utm_source=ig_web_button_share_sheet&rpxt=ZDNlZDc0MzIxNw=="
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <svg class="instagram-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <rect x="3" y="3" width="18" height="18" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1"/>
+
+                    </svg>
+
+                    Visit Instagram Profile
+
+                </a>
+
+            </div>
+
+
+            <!-- MEMBER 4 -->
+
+            <div class="photo-card">
+
+                <a class="photo-link"
+                   href="../images/Choong Kah Yue Chloe.webp"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <img
+                        src="../images/Choong Kah Yue Chloe.webp"
+                        alt="Choong Kah Yue Chloe" decoding="async" loading="lazy">
+
+                </a>
+
+                <p>Chloe <br>Choong Kah Yue<br></p>
+
+                <!-- Replace USERNAME_4 with Instagram username -->
+
+                <a class="instagram-button"
+                   href="https://www.instagram.com/chloeolhcc?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw=="
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <svg class="instagram-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <rect x="3" y="3" width="18" height="18" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1"/>
+
+                    </svg>
+
+                    Visit Instagram Profile
+
+                </a>
+
+            </div>
+
+
+            <!-- MEMBER 5 -->
+
+            <div class="photo-card">
+
+                <a class="photo-link"
+                   href="../images/Lean Pei Wen.webp"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <img
+                        src="../images/Lean Pei Wen.webp"
+                        alt="Lean Pei Wen" decoding="async" loading="lazy">
+
+                </a>
+
+                <p>Lean Pei Wen</p>
+
+                <!-- Replace USERNAME_5 with Instagram username -->
+
+                <a class="instagram-button"
+                   href="https://www.instagram.com/wuli_wenn_?utm_source=ig_web_button_share_sheet&obrf=ZDNlZDc0MzIxNw=="
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <svg class="instagram-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <rect x="3" y="3" width="18" height="18" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1"/>
+
+                    </svg>
+
+                    Visit Instagram Profile
+
+                </a>
+
+            </div>
+
+
+            <!-- MEMBER 6 -->
+
+            <div class="photo-card">
+
+                <a class="photo-link"
+                   href="../images/Lee En Xuan.webp"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <img
+                        src="../images/Lee En Xuan.webp"
+                        alt="Lee En Xuan" decoding="async" loading="lazy">
+
+                </a>
+
+                <p>Lee En Xuan</p>
+
+                <!-- Replace USERNAME_6 with Instagram username -->
+
+                <a class="instagram-button"
+                   href="https://www.instagram.com/ex.1611?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw=="
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <svg class="instagram-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <rect x="3" y="3" width="18" height="18" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1"/>
+
+                    </svg>
+
+                    Visit Instagram Profile
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="department-footer">
+
+        ✦ Made with love and Christmas spirit ✦
+
+    </footer>
+
+</main>
+
+
+<!-- SCROLL REVEAL -->
+
+<script>
+
+    const photoCards = document.querySelectorAll('.photo-card');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add('show');
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        rootMargin: "250px 0px", threshold: 0.01
+    });
+
+    photoCards.forEach(card => {
+        observer.observe(card);
+    });
+
+</script>
+
+</body>
+</html>
