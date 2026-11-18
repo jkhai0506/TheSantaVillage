@@ -1,438 +1,206 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Committee | The Santa Village</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-
-        /* GENERAL */
-
-        .committee-page {
-            min-height: 100vh;
-            padding: 55px 4% 75px;
-            background-color: #fbf8ed;
-            position: relative;
-            overflow: hidden;
-            color: #302522;
-        }
-
-        .committee-page * {
-            box-sizing: border-box;
-        }
-
-
-        /* HEADING */
-
-        .committee-heading {
-            max-width: 1200px;
-            margin: 0 auto 45px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .committee-heading h1 {
-            font-family: 'Gaegu', cursive;
-            font-size: clamp(42px, 6vw, 68px);
-            font-weight: 700;
-            margin: 0 0 10px;
-            color: #302522;
-        }
-
-        .committee-heading p {
-            font-family: 'Patrick Hand', cursive;
-            font-size: clamp(19px, 2.5vw, 27px);
-            letter-spacing: 2px;
-            margin: 0;
-            color: #302522;
-        }
-
-
-        /* COMMITTEE GRID */
-
-        .committee-grid {
-            max-width: 1200px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-
-            gap: 38px;
-
-            position: relative;
-            z-index: 1;
-        }
-
-
-        /* COMMITTEE CARD */
-
-        .committee-card {
-            min-height: 310px;
-            padding: 35px 20px;
-
-            border: 1px solid #81766c;
-            border-radius: 40px;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-            text-decoration: none;
-
-            color: #302522;
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-        }
-
-
-        /* CARD COLORS */
-
-        .committee-card.blue {
-            background: #d8e5f2;
-        }
-
-        .committee-card.pink {
-            background: #efd8d3;
-        }
-
-        .committee-card.yellow {
-            background: #f7edc7;
-        }
-
-
-        /* HOVER EFFECT */
-
-        .committee-card:hover {
-            transform: translateY(-7px) rotate(-1deg);
-            box-shadow: 5px 10px 0 rgba(60, 48, 40, 0.10);
-        }
-
-
-        /* ICON */
-
-        .committee-icon {
-            font-size: 76px;
-            margin-bottom: 25px;
-            line-height: 1.2;
-            color: #302522;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            height: 90px;
-        }
-
-        .committee-icon i {
-            font-size: 76px;
-        }
-
-
-        /* DEPARTMENT NAME */
-
-        .committee-card h3 {
-            font-family: 'Gaegu', cursive;
-            font-size: clamp(23px, 2.5vw, 31px);
-            font-weight: 700;
-            margin: 0;
-            line-height: 1.3;
-        }
-
-
-        /* DECORATIVE STARS */
-
-        .committee-page::before {
-            content: "★       ☆       ★       ☆       ★";
-
-            position: absolute;
-            top: 20px;
-            left: 0;
-            width: 100%;
-
-            font-size: 27px;
-            letter-spacing: 80px;
-
-            color: #b9cbe5;
-            white-space: nowrap;
-            opacity: 0.8;
-
-            pointer-events: none;
-        }
-
-        .committee-page::after {
-            content: "☆       ★       ☆       ★       ☆";
-
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-            width: 100%;
-
-            font-size: 30px;
-            letter-spacing: 75px;
-
-            color: #e3dda9;
-            white-space: nowrap;
-            opacity: 0.8;
-
-            pointer-events: none;
-        }
-
-
-        /* TABLET */
-
-        @media (max-width: 900px) {
-
-            .committee-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 25px;
-            }
-
-            .committee-card {
-                min-height: 260px;
-            }
-
-            .committee-icon {
-                font-size: 65px;
-            }
-
-            .committee-icon i {
-                font-size: 65px;
-            }
-        }
-
-
-        /* MOBILE */
-
-        @media (max-width: 550px) {
-
-            .committee-page {
-                padding: 35px 18px 55px;
-            }
-
-            .committee-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .committee-card {
-                min-height: 220px;
-                border-radius: 30px;
-            }
-
-            .committee-icon {
-                font-size: 60px;
-                height: 70px;
-                margin-bottom: 15px;
-            }
-
-            .committee-icon i {
-                font-size: 60px;
-            }
-
-            .committee-heading {
-                margin-bottom: 30px;
-            }
-        }
-
-    </style>
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Committee | The Santa Village</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&amp;family=Patrick+Hand&amp;display=swap" rel="stylesheet"/>
+<style>/* The Santa Village — hand-drawn department illustrations */
+:root { color-scheme: light !important; }
+html,body { max-width:100%; overflow-x:hidden; }
+.committee-page { min-height:100vh; padding:50px 4% 80px; background:#fbf8ed; color:#302522; }
+.committee-page * { box-sizing:border-box; }
+.committee-heading { max-width:1250px; margin:0 auto 38px; }
+.committee-heading h1 { font:700 clamp(42px,6vw,68px)/1.1 'Gaegu',cursive; color:#302522; margin:0 0 8px; }
+.committee-heading p { font:400 clamp(18px,2.5vw,26px)/1.4 'Patrick Hand',cursive; letter-spacing:1px; }
+.committee-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:25px; max-width:1350px; margin:auto; }
+.committee-card { min-width:0; min-height:255px; padding:20px 12px; border:1.2px solid #94867b; border-radius:34px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; text-decoration:none; color:#302522; transition:transform .25s ease,box-shadow .25s ease; }
+.committee-card.blue { background:#dce7f3; }
+.committee-card.pink { background:#f0dcd7; }
+.committee-card.yellow { background:#f8edc8; }
+.committee-card:hover { transform:translateY(-5px) rotate(-1deg); box-shadow:4px 7px 0 rgba(60,48,40,.08); }
+.committee-card:focus-visible { outline:3px dashed #8b7465; outline-offset:4px; }
+.committee-icon { width:116px; height:112px; margin-bottom:12px; display:grid; place-items:center; transition:transform .25s ease; }
+.department-drawing { display:block; width:100%; height:100%; overflow:visible; filter:drop-shadow(0 1px 0 rgba(90,70,55,.07)); }
+.committee-card:hover .committee-icon { transform:rotate(-4deg) scale(1.05); }
+.committee-card h3 { font:700 clamp(20px,2.2vw,28px)/1.17 'Gaegu',cursive; letter-spacing:.015em; margin:0; color:#302522; overflow-wrap:break-word; }
+@media (max-width:950px) { .committee-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; } .committee-card { min-height:220px; } }
+@media (max-width:550px) { .committee-page { padding:30px 10px 50px; } .committee-heading { margin:0 8px 22px; } .committee-heading h1 { font-size:38px; } .committee-heading p { font-size:18px; } .committee-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; } .committee-card { min-height:142px; padding:10px 4px; border-radius:20px; } .committee-icon { width:min(72px,100%); height:70px; margin-bottom:5px; } .committee-card h3 { font-size:clamp(13px,3.8vw,17px); line-height:1.13; } }
+@media (max-width:360px) { .committee-page { padding-left:7px; padding-right:7px; } .committee-grid { gap:6px; } .committee-icon { height:63px; width:63px; } .committee-card h3 { font-size:13px; } }
+@media (prefers-reduced-motion:reduce) { .committee-card,.committee-icon {transition:none;} }
+</style>
 </head>
-
-
 <body>
-
+<!-- =====================================
+     NAVIGATION
+===================================== -->
+<nav aria-label="Main navigation">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="activities.html">Activities</a>
+<a href="schedule.html">Schedule</a>
+<a href="booths.html">Booths</a>
+<a href="floor-plan.html">Floor plan</a>
+<a href="committee.html">Committee</a>
+<a href="stage.html">Stage</a>
+<a href="merch.html">Merch</a>
+<a href="lucky-draw.html">Lucky draw</a>
+<a href="rules.html">Rules</a>
+</nav>
+<!-- =====================================
+     COMMITTEE PAGE
+===================================== -->
 <main class="committee-page">
-
-
-    <!-- HEADING -->
-
-    <div class="committee-heading">
-
-         <a href="index.html" class="back-button">
-        ← Back to Home
-         </a>
-
-        <h1>Meet the Committee ✦</h1>
-
-        <p>Tap a department to see the team photo.</p>
-
-    </div>
-
-
-    <!-- COMMITTEE DEPARTMENTS -->
-
-    <div class="committee-grid">
-
-
-        <!-- CORE COMMITTEE -->
-
-        <a href="#" class="committee-card blue">
-
-            <div class="committee-icon">👑</div>
-
-            <h3>Core Committee</h3>
-
-        </a>
-
-
-        <!-- CHAIR DEPARTMENT -->
-
-        <a href="Department/chair.html" class="committee-card pink">
-
-            <div class="committee-icon">🎨</div>
-
-            <h3>Chair Department</h3>
-
-        </a>
-
-
-        <!-- DECORATION DEPARTMENT -->
-
-        <a href="Department/decoration.html" class="committee-card yellow">
-
-            <div class="committee-icon">🎀</div>
-
-            <h3>Decoration Department</h3>
-
-        </a>
-
-
-        <!-- HUMAN RESOURCES DEPARTMENT -->
-
-        <a href="Department/hr.html" class="committee-card blue">
-
-            <div class="committee-icon">👥</div>
-
-            <h3>Human Resources Department</h3>
-
-        </a>
-
-
-        <!-- LOGISTICS DEPARTMENT -->
-
-        <a href="Department/logistic.html" class="committee-card pink">
-
-            <div class="committee-icon">
-                <i class="fa-solid fa-truck-fast"></i>
-            </div>
-
-            <h3>Logistics Department</h3>
-
-        </a>
-
-
-        <!-- PROGRAMME DEPARTMENT -->
-
-        <a href="Department/programme.html" class="committee-card yellow">
-
-            <div class="committee-icon">🎵</div>
-
-            <h3>Programme Department</h3>
-
-        </a>
-
-
-        <!-- PUBLIC RELATION DEPARTMENT -->
-
-        <a href="Department/public-relation.html" class="committee-card blue">
-
-            <div class="committee-icon">📣</div>
-
-            <h3>Public Relation Department</h3>
-
-        </a>
-
-
-        <!-- PUBLICITY DEPARTMENT -->
-
-        <a href="Department/publicity.html" class="committee-card pink">
-
-            <div class="committee-icon">📢</div>
-
-            <h3>Publicity Department</h3>
-
-        </a>
-
-
-        <!-- SALES AND MARKETING DEPARTMENT -->
-
-        <a href="Department/sales-marketing.html" class="committee-card yellow">
-
-            <div class="committee-icon">🛍️</div>
-
-            <h3>Sales and Marketing Department</h3>
-
-        </a>
-
-
-        <!-- SECRETARY DEPARTMENT -->
-
-        <a href="Department/secretary.html" class="committee-card blue">
-
-            <div class="committee-icon">📋</div>
-
-            <h3>Secretary Department</h3>
-
-        </a>
-
-
-        <!-- SPONSORSHIP DEPARTMENT -->
-
-        <a href="Department/sponsorship.html" class="committee-card pink">
-
-            <div class="committee-icon">🎁</div>
-
-            <h3>Sponsorship Department</h3>
-
-        </a>
-
-
-        <!-- TECHNICAL DEPARTMENT -->
-
-        <a href="Department/technical.html" class="committee-card yellow">
-
-            <div class="committee-icon">⚙️</div>
-
-            <h3>Technical Department</h3>
-
-        </a>
-
-
-        <!-- TREASURY DEPARTMENT -->
-
-        <a href="Department/treasury.html" class="committee-card blue">
-
-            <div class="committee-icon">💰</div>
-
-            <h3>Treasury Department</h3>
-
-        </a>
-
-
-    </div>
-
+<!-- HEADING -->
+<header class="committee-heading">
+<h1>
+            Meet the Committee ✦
+        </h1>
+<p>
+            Tap a department to meet the team.
+        </p>
+</header>
+<!-- =====================================
+         DEPARTMENT GRID
+    ====================================== -->
+<section class="committee-grid">
+<!-- 01 CORE COMMITTEE -->
+<a class="committee-card blue" href="#">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M13 72 9 28 31 45 50 14 69 45 91 28 87 72Z" fill="#f6d978"></path><path d="M13 72Q50 77 87 72M16 82Q49 85 84 82" fill="none"></path><circle cx="9" cy="27" fill="#efa99c" r="5"></circle><circle cx="50" cy="14" fill="#efa99c" r="5"></circle><circle cx="91" cy="27" fill="#efa99c" r="5"></circle></g></svg>
+</div>
+<h3>
+                Core Committee
+            </h3>
+</a>
+<!-- 02 CHAIR DEPARTMENT -->
+<a class="committee-card pink" href="Department/chair.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M52 11C26 7 11 28 12 53s18 36 38 33c16-2 19-11 13-20-5-9 5-16 14-11 10 6 19-1 16-13C90 23 73 13 52 11Z" fill="#f8e4bd"></path><circle cx="35" cy="36" fill="#e6a6a5" r="8"></circle><circle cx="57" cy="24" fill="#a7c4e5" r="8"></circle><circle cx="78" cy="39" fill="#b6cd9e" r="8"></circle><circle cx="34" cy="60" fill="#d8b5d8" r="8"></circle></g></svg>
+</div>
+<h3>
+                Chair Department
+            </h3>
+</a>
+<!-- 03 DECORATION DEPARTMENT -->
+<a class="committee-card yellow" href="Department/decoration.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M50 46C36 21 14 13 10 29c-5 17 18 30 40 24C72 59 95 46 90 29 86 13 64 21 50 46Z" fill="#eca49e"></path><path d="M44 51 28 88l15-9 8 10 6-32 10 32 7-11 13 8-26-37Z" fill="#f4b6ae"></path><ellipse cx="51" cy="49" fill="#e38a82" rx="8" ry="10"></ellipse><path d="M13 29q18 2 30 16M88 29Q70 31 59 45" fill="none"></path></g></svg>
+</div>
+<h3>
+                Decoration Department
+            </h3>
+</a>
+<!-- 04 HUMAN RESOURCES -->
+<a class="committee-card blue" href="Department/hr.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="34" cy="30" fill="#a9c4e7" r="15"></circle><circle cx="68" cy="30" fill="#c0bde5" r="15"></circle><path d="M8 83c0-23 9-35 26-35s27 12 27 35Z" fill="#a9c4e7"></path><path d="M42 83c0-23 9-35 26-35s26 12 26 35Z" fill="#c0bde5"></path></g></svg>
+</div>
+<h3>
+                Human Resources Department
+            </h3>
+</a>
+<!-- 05 LOGISTICS -->
+<a class="committee-card pink" href="Department/logistic.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 35Q10 30 16 30H62V69H10Z" fill="#efd28d"></path><path d="M62 44h16l12 15v10H62Z" fill="#fff2e5"></path><path d="M69 48h9l7 9H69Z" fill="#bfd9e9"></path><circle cx="29" cy="71" fill="#b8b1b6" r="10"></circle><circle cx="77" cy="71" fill="#b8b1b6" r="10"></circle><circle cx="29" cy="71" fill="#fffdf4" r="4"></circle><circle cx="77" cy="71" fill="#fffdf4" r="4"></circle><path d="M4 43H0M9 52H1M10 61H3" fill="none"></path></g></svg>
+</div>
+<h3>
+                Logistics Department
+            </h3>
+</a>
+<!-- 06 PROGRAMME -->
+<a class="committee-card yellow" href="Department/programme.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M42 24 79 15v48l-11 4V31l-24 6v37l-10 4V29Z" fill="#b8bce0"></path><ellipse cx="27" cy="76" fill="#b8bce0" rx="14" ry="10"></ellipse><ellipse cx="65" cy="67" fill="#b8bce0" rx="14" ry="10"></ellipse></g></svg>
+</div>
+<h3>
+                Programme Department
+            </h3>
+</a>
+<!-- 07 PUBLIC RELATION -->
+<a class="committee-card blue" href="Department/public-relation.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M20 47 72 22 80 65 26 56Z" fill="#f2d17e"></path><path d="M20 47 30 44 34 59 24 62Z" fill="#f8e4b6"></path><path d="m34 58 10 21-13 5-11-23Z" fill="#f2d17e"></path><path d="M82 28l10-10M87 45h10M82 61l11 9" fill="none" stroke="#d7a94f"></path></g></svg>
+</div>
+<h3>
+                Public Relation Department
+            </h3>
+</a>
+<!-- 08 PUBLICITY -->
+<a class="committee-card pink" href="Department/publicity.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M22 43 72 23 81 63 29 57Z" fill="#f1adae"></path><path d="M14 41 28 41 32 59 17 62Z" fill="#f7e4e2"></path><path d="m27 59 8 22-13 4-11-23Z" fill="#efa0a3"></path><path d="M84 29l9-7M88 43h9M84 60l11 7" fill="none" stroke="#cf8e89"></path></g></svg>
+</div>
+<h3>
+                Publicity Department
+            </h3>
+</a>
+<!-- 09 SALES AND MARKETING -->
+<a class="committee-card yellow" href="Department/sales-marketing.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M18 34H83L88 87H12Z" fill="#b9dbe5"></path><path d="M32 37V24Q33 8 50 9q19 0 19 20v8" fill="none"></path><path d="M15 60H85M14 72h72" fill="none" stroke="#82bed0"></path><path d="M70 45 90 54 80 76 61 68Z" fill="#f4d881"></path><circle cx="77" cy="55" fill="#fffdf4" r="2.5"></circle></g></svg>
+</div>
+<h3>
+                Sales and Marketing Department
+            </h3>
+</a>
+<!-- 10 SECRETARY -->
+<a class="committee-card blue" href="Department/secretary.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect fill="#f8e2b9" height="69" rx="5" width="62" x="20" y="22"></rect><rect fill="#fffdf4" height="53" rx="2" width="44" x="29" y="30"></rect><path d="M40 17h22v12H40z" fill="#c1b4b4"></path><path d="m34 45 5 5 8-11m-13 27 5 5 8-11" fill="none" stroke="#a5c59a" stroke-width="4"></path><path d="M52 45h14M52 66h14" fill="none" stroke="#b8b5c5"></path></g></svg>
+</div>
+<h3>
+                Secretary Department
+            </h3>
+</a>
+<!-- 11 SPONSORSHIP -->
+<a class="committee-card pink" href="Department/sponsorship(1).html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect fill="#f4d87f" height="44" rx="3" width="67" x="17" y="41"></rect><rect fill="#f6e6b1" height="15" rx="3" width="76" x="12" y="34"></rect><path d="M47 35H59V85H47Z" fill="#e8a09e"></path><path d="M53 34C32 10 23 28 35 34Zm0 0c21-24 30-6 18 0Z" fill="#e8a09e"></path></g></svg>
+</div>
+<h3>
+                Sponsorship Department
+            </h3>
+</a>
+<!-- 12 TECHNICAL -->
+<a class="committee-card yellow" href="Department/technical.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M43 10h17l3 12 12-4 10 14-8 10 10 10-8 16-13-1-6 16H43l-4-15-13 3-11-15 10-12-8-11 12-14 12 6Z" fill="#d7cbce"></path><circle cx="51" cy="47" fill="#fff2dd" r="18"></circle></g></svg>
+</div>
+<h3>
+                Technical Department
+            </h3>
+</a>
+<!-- 13 TREASURY -->
+<a class="committee-card blue" href="Department/treasury.html">
+<div class="committee-icon">
+<svg aria-hidden="true" class="department-drawing" focusable="false" viewBox="0 0 100 100"><g fill="none" stroke="#776557" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M36 27Q24 15 37 12q10-3 14 10 4-15 16-10 12 7-2 18Q84 51 78 78 74 92 50 92 24 91 22 74 20 52 36 27Z" fill="#f6d989"></path><path d="M44 32Q23 15 28 36q9 11 20 5Q72 52 77 35q2-17-25-3Z" fill="#edaba3"></path><path d="M33 42q17 4 35 0" fill="none"></path><text fill="#735e4c" font-family="Gaegu, cursive" font-size="33" stroke="none" text-anchor="middle" x="50" y="75">$</text></g></svg>
+</div>
+<h3>
+                Treasury Department
+            </h3>
+</a>
+</section>
 </main>
-
+<!-- =====================================
+     FOOTER
+===================================== -->
+<footer>
+<div class="script">
+        Merry Christmas
+    </div>
+<p>
+        See you under the clock.
+    </p>
+<a class="footer-home" href="index.html">
+        BACK TO HOME ↑
+    </a>
+</footer>
 </body>
-
 </html>
