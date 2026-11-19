@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sales and Marketing Department | The Santa Village</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&amp;family=Patrick+Hand&amp;display=swap" rel="stylesheet"/>
+<style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #fbf8ed;
+            color: #302522;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        /* MAIN PAGE */
+
+        .department-page {
+            min-height: 100vh;
+            padding: 45px 5% 70px;
+            position: relative;
+        }
+
+        /* HEADER */
+
+        .department-header {
+            max-width: 1250px;
+            margin: 0 auto 35px;
+        }
+
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            color: #302522;
+            border: 1px solid #9c8b73;
+            border-radius: 30px;
+            padding: 10px 23px;
+            font-size: 19px;
+            margin-bottom: 30px;
+            transition: 0.25s;
+        }
+
+        .back-button:hover {
+            background: #e9dfc8;
+            transform: translateY(-3px);
+        }
+
+        .department-header h1 {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(38px, 6vw, 68px);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .department-header p {
+            font-size: 25px;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        /* GROUP PHOTO */
+
+        .group-section {
+            max-width: 1250px;
+            margin: 0 auto 60px;
+
+            opacity: 0;
+            transform: scale(0.85);
+
+            animation: dramaticReveal 1.5s
+                       cubic-bezier(0.16, 1, 0.3, 1)
+                       forwards;
+        }
+
+        .group-card {
+            background: #f0d9d3;
+            border: 2px solid #81766c;
+            border-radius: 30px;
+            padding: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(60, 48, 40, 0.08);
+        }
+
+        .group-card a {
+            display: block;
+            border-radius: 22px;
+            overflow: hidden;
+        }
+
+        /* FULL PHOTO - NO CROPPING */
+
+        .group-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 22px;
+            animation: photoZoom 1.8s ease forwards;
+        }
+
+        .group-caption {
+            text-align: center;
+            padding: 18px 10px 8px;
+        }
+
+        .group-caption h2 {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(32px, 4vw, 45px);
+            margin: 0;
+        }
+
+        .group-caption p {
+            font-size: 20px;
+            margin: 8px 0 0;
+            color: #746b60;
+        }
+
+        /* GROUP PHOTO ANIMATION */
+
+        @keyframes dramaticReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            65% {
+                opacity: 1;
+                transform: scale(1.025);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes photoZoom {
+            from {
+                transform: scale(1.12);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* SCROLL MESSAGE */
+
+        .scroll-message {
+            text-align: center;
+            margin: 25px auto 65px;
+            font-family: 'Gaegu', cursive;
+            color: #5b4c45;
+            animation: floatArrow 2s ease-in-out infinite;
+        }
+
+        .scroll-message p {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .scroll-arrow {
+            display: block;
+            font-size: 34px;
+            margin-top: 6px;
+        }
+
+        @keyframes floatArrow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* MEMBERS SECTION */
+
+        .members-section {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .members-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .members-heading h2 {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(34px, 5vw, 50px);
+            margin: 0;
+        }
+
+        .members-heading p {
+            font-size: 22px;
+            margin-top: 8px;
+            color: #746b60;
+        }
+
+        /* PHOTO GRID */
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .photo-card {
+            background: #f0d9d3;
+            border: 1px solid #81766c;
+            border-radius: 25px;
+            padding: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+
+            opacity: 0;
+            transform: translateY(35px);
+        }
+
+        .photo-card:nth-child(3n+1) {
+            background: #d8e5f2;
+        }
+
+        .photo-card:nth-child(3n) {
+            background: #f7edc7;
+        }
+
+        .photo-card.show {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 5px 9px 0 rgba(60, 48, 40, 0.10);
+        }
+
+        .photo-link {
+            display: block;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+            display: block;
+            border-radius: 17px;
+        }
+
+        /* MEMBER NAME */
+
+        .photo-card p {
+            font-family: 'Gaegu', cursive;
+            font-size: 25px;
+            font-weight: 700;
+            text-align: center;
+            margin: 12px 0 5px;
+        }
+
+        /* INSTAGRAM BUTTON */
+
+        .instagram-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 9px;
+
+            width: fit-content;
+            margin: 12px auto 8px;
+
+            padding: 9px 20px;
+
+            background: #302522;
+            color: #fffaf0;
+
+            border-radius: 30px;
+            text-decoration: none;
+
+            font-family: 'Patrick Hand', cursive;
+            font-size: 17px;
+
+            transition: 0.3s ease;
+        }
+
+        .instagram-button:hover {
+            background: #b86d72;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(60, 48, 40, 0.15);
+        }
+
+        .instagram-icon {
+            width: 19px;
+            height: 19px;
+        }
+
+        /* MEMBER ANIMATION */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FOOTER */
+
+        .department-footer {
+            text-align: center;
+            margin-top: 65px;
+            font-family: 'Gaegu', cursive;
+            font-size: 25px;
+            color: #746b60;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 850px) {
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+
+            .photo-card img {
+                height: 260px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 550px) {
+
+            .department-page {
+                padding: 30px 17px 50px;
+            }
+
+            .department-header {
+                margin-bottom: 25px;
+            }
+
+            .department-header p {
+                font-size: 20px;
+            }
+
+            .group-section {
+                margin-bottom: 45px;
+            }
+
+            .group-card {
+                padding: 10px;
+                border-radius: 22px;
+            }
+
+            .group-card a,
+            .group-card img {
+                border-radius: 16px;
+            }
+
+            .group-caption {
+                padding-top: 14px;
+            }
+
+            .group-caption h2 {
+                font-size: 28px;
+            }
+
+            .group-caption p {
+                font-size: 16px;
+            }
+
+            .scroll-message {
+                margin: 20px auto 50px;
+            }
+
+            .scroll-message p {
+                font-size: 23px;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .photo-card img {
+                height: auto;
+                max-height: 420px;
+                object-fit: contain;
+            }
+
+            .instagram-button {
+                font-size: 16px;
+                padding: 9px 18px;
+            }
+
+            .department-footer {
+                font-size: 21px;
+            }
+        }
+
+        /* REDUCED MOTION */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+
+            .group-section {
+                opacity: 1;
+                transform: none;
+            }
+
+            .photo-card {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+    
+        /* FIRST MEMBER: HOD — soft champagne glow, no crown */
+        .photo-grid > .photo-card:first-child {
+            position: relative;
+            overflow: visible;
+            border: 2px solid #e3bb6e;
+            background: #fff4db;
+            box-shadow: 0 0 12px rgba(235, 191, 101, .55),
+                        0 0 27px rgba(245, 215, 152, .32);
+        }
+        .photo-grid > .photo-card:first-child.show {
+            animation: fadeUp .8s ease forwards, hodGlow 3s ease-in-out .8s infinite;
+        }
+        .photo-grid > .photo-card:first-child .hod-label {
+            display: block;
+            text-align: center;
+            width: fit-content;
+            max-width: 100%;
+            margin: 6px auto 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #dfbc78;
+            background: #fff9e8;
+            color: #805c2e;
+            font: 700 16px 'Gaegu', cursive;
+        }
+        @keyframes hodGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(235,191,101,.45), 0 0 22px rgba(245,215,152,.22); }
+            50% { box-shadow: 0 0 20px rgba(235,191,101,.8), 0 0 38px rgba(245,215,152,.48); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .photo-grid > .photo-card:first-child.show { animation: none; opacity: 1; transform: none; }
+        }
+</style>
+</head>
+<body>
+<main class="department-page">
+<!-- HEADER -->
+<header class="department-header">
+<a class="back-button" href="../committee.html">
+            ← Back to Committee
+        </a>
+<h1>Sales and Marketing Department 🛍️</h1>
+<p>Turning ideas into opportunities, one sale at a time.</p>
+</header>
+<!-- GROUP PHOTO FIRST -->
+<section class="group-section">
+<div class="group-card">
+<a href="../images/SnM.webp" rel="noopener noreferrer" target="_blank">
+<img alt="Sales and Marketing Department Group Photo" decoding="async" fetchpriority="high" loading="eager" src="../images/SnM.webp"/>
+</a>
+<div class="group-caption">
+<h2>✦ Our Sales and Marketing Team ✦</h2>
+<p>Together, we make Christmas magic happen! 🛍️</p>
+</div>
+</div>
+</section>
+<!-- SCROLL MESSAGE -->
+<div class="scroll-message">
+<p>There's more Christmas magic below!</p>
+<span class="scroll-arrow">↓</span>
+</div>
+<!-- INDIVIDUAL MEMBERS -->
+<section class="members-section">
+<div class="members-heading">
+<h2>Meet Our Members ♡</h2>
+<p>The people behind the ideas!</p>
+</div>
+<div class="photo-grid">
+
+<div class="photo-card">
+<a class="photo-link" href="../images/Chan Jie Xuan.webp" rel="noopener noreferrer" target="_blank">
+<img alt="Sales and Marketing Member 2" decoding="async" loading="eager" src="../images/Chan Jie Xuan.webp"/>
+</a>
+<p>Chan Jie Xuan</p><span class="hod-label">HEAD OF DEPARTMENT</span>
+<a class="instagram-button" href="https://www.instagram.com/jxuan.59?utm_source=ig_web_button_share_sheet&amp;cplk=ZDNlZDc0MzIxNw==" rel="noopener noreferrer" target="_blank">
+<svg class="instagram-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="5" width="18" x="3" y="3"></rect>
+<circle cx="12" cy="12" r="4"></circle>
+<circle cx="17.5" cy="6.5" r="1"></circle>
+</svg>
+
+                    Visit Instagram Profile
+
+                </a>
+</div><div class="photo-card">
+<a class="photo-link" href="../images/Foong Zhen Jian.webp" rel="noopener noreferrer" target="_blank">
+<img alt="Foong Zhen Jian" decoding="async" fetchpriority="high" loading="eager" src="../images/Foong Zhen Jian.webp"/>
+</a>
+<p>Foong Zhen Jian</p>
+<!-- Replace USERNAME_1 with Instagram username -->
+<a class="instagram-button" href="https://www.instagram.com/foong1222/?utm_source=ig_web_button_share_sheet" rel="noopener noreferrer" target="_blank">
+<svg class="instagram-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="5" width="18" x="3" y="3"></rect>
+<circle cx="12" cy="12" r="4"></circle>
+<circle cx="17.5" cy="6.5" r="1"></circle>
+</svg>
+
+                    Visit Instagram Profile
+
+                </a>
+</div>
+
+
+
+<div class="photo-card">
+<a class="photo-link" href="../images/Ng Yujinn.webp" rel="noopener noreferrer" target="_blank">
+<img alt="Ng Yujinn" decoding="async" loading="lazy" src="../images/Ng Yujinn.webp"/>
+</a>
+<p>Ng Yujinn</p>
+<a class="instagram-button" href="https://www.instagram.com/y.journey_?utm_source=ig_web_button_share_sheet&amp;xtok=ZDNlZDc0MzIxNw==" rel="noopener noreferrer" target="_blank">
+<svg class="instagram-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="5" width="18" x="3" y="3"></rect>
+<circle cx="12" cy="12" r="4"></circle>
+<circle cx="17.5" cy="6.5" r="1"></circle>
+</svg>
+
+                    Visit Instagram Profile
+
+                </a>
+</div>
+
+<div class="photo-card">
+<a class="photo-link" href="../images/Lee Her Thai.webp" rel="noopener noreferrer" target="_blank">
+<img alt="Lee Her Thai" decoding="async" loading="lazy" src="../images/Lee Her Thai.webp"/>
+</a>
+<p>Lee Her Thai</p>
+<a class="instagram-button" href="https://www.instagram.com/hetai.li/?utm_source=ig_web_button_share_sheet" rel="noopener noreferrer" target="_blank">
+<svg class="instagram-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="5" width="18" x="3" y="3"></rect>
+<circle cx="12" cy="12" r="4"></circle>
+<circle cx="17.5" cy="6.5" r="1"></circle>
+</svg>
+
+                    Visit Instagram Profile
+
+                </a>
+</div>
+
+<div class="photo-card">
+<a class="photo-link" href="../images/Mackenzie Lim Jian Aun.webp" rel="noopener noreferrer" target="_blank">
+<img alt="Mackenzie Lim Jian Aun" decoding="async" loading="lazy" src="../images/Mackenzie Lim Jian Aun.webp"/>
+</a>
+<p>Mackenzie <br/>Lim Jian Aun<br/></p>
+<a class="instagram-button" href="https://www.instagram.com/mackenzie_1116/?utm_source=ig_web_button_share_sheet" rel="noopener noreferrer" target="_blank">
+<svg class="instagram-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="5" width="18" x="3" y="3"></rect>
+<circle cx="12" cy="12" r="4"></circle>
+<circle cx="17.5" cy="6.5" r="1"></circle>
+</svg>
+
+                    Visit Instagram Profile
+
+                </a>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="department-footer">
+
+        ✦ Made with love and Christmas spirit ✦
+
+    </footer>
+</main>
+<!-- SCROLL REVEAL -->
+<script>
+
+    const photoCards = document.querySelectorAll('.photo-card');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add('show');
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        rootMargin: "250px 0px", threshold: 0.01
+    });
+
+    photoCards.forEach(card => {
+        observer.observe(card);
+    });
+
+</script>
+</body>
+</html>
